@@ -2,6 +2,23 @@
 {
   public static class MergeSort
   {
+	public static void Run()
+	{
+	  Random rand = new((int)DateTime.Now.Ticks);
+	  int[] arr = Enumerable.Range(0, 1000000000).AsParallel().Select(i => rand.Next()).ToArray();
+	  int[] sortedArr = Sort(arr);
+	  Console.WriteLine(IsSorted(sortedArr));
+	}
+
+	public static bool IsSorted(int[] arr)
+	{
+	  for (var i = 1; i < arr.Length; i++)
+	  {
+		if (arr[i] < arr[i - 1]) return false;
+	  }
+	  return true;
+	}
+
 	public static int[] Sort(int[] items)
 	{
 	  int[] aux = new int[items.Length];
@@ -10,6 +27,7 @@
 	  Sort(arr, aux, 0, items.Length - 1, maxDepth);
 	  return arr;
 	}
+
 	private static void Sort(int[] arr, int[] aux, int lo, int hi, int depth)
 	{
 	  if (hi <= lo) return;
@@ -26,6 +44,7 @@
 	  }
 	  Merge(arr, aux, lo, mid, hi);
 	}
+
 	private static void Merge(int[] arr, int[] aux, int lo, int mid, int hi)
 	{
 	  for (int k = lo; k <= hi; k++) aux[k] = arr[k];

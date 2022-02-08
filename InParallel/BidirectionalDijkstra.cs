@@ -4,6 +4,27 @@ namespace InParallel
 {
   public class BidirectionalDijkstra
   {
+	public static void Run()
+	{
+	  int R = 56, C = 236;
+	  Node[,] grid = new Node[R, C];
+	  //Random rand = new((int)DateTime.Now.Ticks);
+	  for (int r = 0; r < R; r++)
+	  {
+		for (int c = 0; c < C; c++)
+		{
+		  //grid[r, c] = new(r, c, 1, rand.Next(0, 6) == 0);
+		  grid[r, c] = new(r, c, 1, false);
+		}
+	  }
+
+	  new BidirectionalDijkstra(grid, (R / 2 - 1, 0), (R / 2 - 1, C - 1));
+	  //new BidirectionalDijkstra(grid, (R / 2 - 1, C / 2 - 2), (R / 2 - 1, C / 2 + 2));
+	  //new BidirectionalDijkstra(grid, (0, C / 2 - 1), (R - 1, C / 2 - 1));
+	  //new BidirectionalDijkstra(grid, (0, 0), (R / 2 - 1, C - 1));
+	  //new BidirectionalDijkstra(grid, (0, 0), (R - 1, C - 1));
+	}
+
 	private readonly Node[,] _grid;
 	private readonly int _rows, _cols;
 	private readonly (int Row, int Col)[] _directions;
